@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenRouter AI Interface</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>OpenRouter AI Interface v1.1</h1>
+        
+        <!-- Language selection -->
+        <div class="form-group">
+            <label for="language">Select Language:</label>
+            <select id="language" class="form-control">
+                <option value="ENG">ENG</option>
+                <option value="中文" selected>中文</option>
+                <option value="Việt Nam">Việt Nam</option>
+            </select>
+        </div>
+        
+        <!-- Model selection -->
+        <div class="form-group">
+            <label for="model">Select Model:</label>
+            <select id="model" class="form-control">
+                <option value="deepseek/deepseek-r1:free" selected>deepseek/deepseek-r1:free</option>
+                <option value="deepseek/deepseek-chat-v3-0324:free">deepseek/deepseek-chat-v3-0324:free</option>
+                <option value="qwen/qwen2.5-vl-72b-instruct:free">qwen/qwen2.5-vl-72b-instruct:free</option>
+                <option value="deepseek/deepseek-chat:free">deepseek/deepseek-chat:free</option>
+                <option value="google/gemini-2.0-flash-lite-preview-02-05:free">google/gemini-2.0-flash-lite-preview-02-05:free</option>
+                <option value="google/gemini-2.0-flash-exp:free">google/gemini-2.0-flash-exp:free</option>
+                <option value="google/gemini-2.0-pro-exp-02-05:free">google/gemini-2.0-pro-exp-02-05:free</option>
+                <option value="google/gemini-2.0-flash-thinking-exp:free">google/gemini-2.0-flash-thinking-exp:free</option>
+                <option value="meta-llama/llama-3.3-70b-instruct:free">meta-llama/llama-3.3-70b-instruct:free</option>
+            </select>
+        </div>
+        
+        <!-- API Key -->
+        <div class="form-group">
+            <label for="apiKey">API Key:</label>
+            <div class="api-key-container">
+                <input type="password" id="apiKey" class="form-control" placeholder="Enter your OpenRouter API key">
+                <button id="toggleApiKey" class="btn btn-secondary">Show</button>
+            </div>
+        </div>
+        
+        <!-- Split method -->
+        <div class="form-group">
+            <label for="splitMethod">Text Split Method:</label>
+            <select id="splitMethod" class="form-control">
+                <option value="chapter" selected>By Chapter (第X章/Chương X)</option>
+                <option value="count">By Character Count</option>
+            </select>
+        </div>
+        
+        <!-- Split length -->
+        <div class="form-group">
+            <label id="splitLengthLabel" for="splitLength">Characters per part:</label>
+            <input type="number" id="splitLength" class="form-control" value="1000" min="1">
+        </div>
+        
+        <!-- Prompt input -->
+        <div class="form-group">
+            <label for="prompt">Enter Prompt:</label>
+            <textarea id="prompt" class="form-control" rows="4"></textarea>
+        </div>
+        
+        <!-- Additional text -->
+        <div class="form-group">
+            <label for="additionalText">Enter Additional Text:</label>
+            <textarea id="additionalText" class="form-control" rows="6"></textarea>
+        </div>
+        
+        <!-- Buttons -->
+        <div class="button-group">
+            <button id="submitBtn" class="btn btn-primary">Submit Request</button>
+            <button id="stopBtn" class="btn btn-danger" disabled>Stop</button>
+            <button id="loadBtn" class="btn btn-secondary">Load Results</button>
+        </div>
+        
+        <!-- Progress bar -->
+        <div class="progress-container">
+            <div class="progress">
+                <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%"></div>
+            </div>
+            <div id="progressText" class="progress-text">0%</div>
+        </div>
+        
+        <!-- Current progress -->
+        <div class="form-group">
+            <label>Current Processing Progress:</label>
+            <div id="currentProgress" class="result-box"></div>
+        </div>
+        
+        <!-- Current result -->
+        <div class="form-group">
+            <label>Current Part Result:</label>
+            <div id="currentResult" class="result-box"></div>
+        </div>
+        
+        <!-- Final result -->
+        <div class="form-group">
+            <label>Final Result:</label>
+            <div id="finalResult" class="result-box"></div>
+        </div>
+    </div>
+    
+    <script src="/static/script.js"></script>
+</body>
+</html>
+
